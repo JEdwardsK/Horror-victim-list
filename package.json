@@ -1,0 +1,12 @@
+{
+  "name": "Horror-victim-list",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:JEdwardsK/Horror-victim-list.git",
+  "author": "J Edwards <jesse.edwards2@protonmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "prompt": "^1.1.0"
+  },
+  "type": "module"
+}
