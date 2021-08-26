@@ -91,20 +91,45 @@ const questions = () => {
                                     characterMap.get('cheerleader').push(characterName)
                                     nextCharacter()
                                   } else{
-                                    
+                                    prompt.get([questionNerd], (err, { response }) => {
+                                      if (response.toLowerCase() === 'y') {
+                                        characterMap.get('nerd').push(characterName)
+                                        nextCharacter()
+                                      } 
+                                    })
                                   }
+                                })
                               }
+                            })
                           }
+                        })
                       } else {
-                        
-                      }
-                  }
-              }
-          }
-      }
-    } )
-  })
-}
+                        prompt.get([questionWhore], (err, { response }) => {
+                          if (response.toLowerCase() === 'y') {
+                            characterMap.get('firstCharacter').unshift(characterName)
+                            nextCharacter()
+                          } else{
+                            prompt.get([questionStoner], (err, { response }) => {
+                              if (response.toLowerCase() === 'y') {
+                                characterMap.get('stoner').unshift(characterName)
+                                nextCharacter()
+                              } else{
+                                prompt.get([questionSporty], (err, { response }) => {
+                                  if (response.toLowerCase() === 'y') {
+                                    characterMap.get('cheerleader').push(characterName)
+                                    nextCharacter()
+                                  } else{
+                                    prompt.get([questionNerd], (err, { response }) => {
+                                      if (response.toLowerCase() === 'y') {
+                                        characterMap.get('nerd').push(characterName)
+                                        nextCharacter()
+                                      } 
+                                    })
+                                  }
+                                })
+                              }
+                            })
+                          }
 
 const nextCharacter = () => {
   prompt.get([questionContinue], (err, { response }) => {
@@ -118,10 +143,4 @@ questions()
 
 
 
-'whore',
-'cheerleader',
-'jock',
-'stoner',
-'nerd',
-'goodGuy',
 
