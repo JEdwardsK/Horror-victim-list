@@ -8,5 +8,11 @@
   "dependencies": {
     "prompt": "^1.1.0"
   },
-  "type": "module"
+  "type": "module",
+  "devDependencies": {
+    "jest": "^27.0.6"
+  },
+  "scripts": {
+    "test": "jest"
+  }
 }
