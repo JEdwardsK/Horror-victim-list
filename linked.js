@@ -5,13 +5,13 @@ export class CharacterNode {
     // if (typeof score !== 'number') throw new Error('invalid type, score must be a number')
     this.name = name
     this.score = score
+    this.next = null
   }
 }
 
 export class CharacterLinkedList {
   constructor () {
     this.head = null
-    this.next = null
     this.size = 0
   }
 
@@ -22,15 +22,33 @@ export class CharacterLinkedList {
       return
     }
     let current = this.head
-    if (current.score > character.score) {
-      this.head = character
-      this.next = current
-      this.size++
-      return
-    }
-    if (current.score < character.score) {
-      this.next = character
-      this.size++
+    while (current) {
+      //prepend
+      if (character.score < current.score) {
+        this.head = character
+        character.next = current
+        this.size++
+        return
+      }
+      //append
+      if (character.score > current.score) {
+        console.log('list', this)
+        const tempNext = current.next
+        //node is at end of list
+        if (!tempNext) {
+          current.next = character
+          this.size++
+          return
+        }
+        // insert node inbetween current and next
+        if (tempNext.score > character.score) {
+          current.next = character
+          character.next = tempNext
+          this.size++
+          return
+        }
+      }
+      current = current.next
     }
 
   }
@@ -40,7 +58,7 @@ export class CharacterLinkedList {
 
     const characterList = []
     let current = this.head
-    console.log(current)
+
     while (current) {
       characterList.push(current.name)
       current = current.next
@@ -49,9 +67,7 @@ export class CharacterLinkedList {
   }
 }
 
-
-const test = new CharacterNode('test', 19)
-const testList = new CharacterLinkedList()
-testList.addCharacter(test)
-const characters = testList.printCharacters()
-
+export const coinToss = () => {
+  const result = Math.round(Math.random())
+  return result === 0 ? -1 : 1
+}
