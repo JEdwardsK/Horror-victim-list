@@ -54,7 +54,7 @@ export class CharacterLinkedList {
   }
 
   printCharacters() {
-    if (!this.head) return []
+    if (!this.head) return null
 
     const characterList = []
     let current = this.head
