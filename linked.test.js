@@ -54,6 +54,7 @@ describe('Character List', () => {
     test('should have a print characters method', () => {
       expect(dummyList.printCharacters).toBeDefined()
     })
+
   })
 
   describe('Add Character to list functionality', () => {
@@ -122,6 +123,34 @@ describe('Character List', () => {
       })
     })
     
+    describe('handling entries with matching scores', () => {
+      const matchingScoresTestList = new CharacterLinkedList()
+      const fourthCharacter = new CharacterNode('ben', 5)
+      const fifthCharacter = new CharacterNode('jenny', 5)
+      const sixthCharacter = new CharacterNode('tammie', 5)
+
+      
+      test.todo('should run coin toss function if scores are identical')
+      
+      
+      test('should update size count despite matching scores', () => {
+        matchingScoresTestList.addCharacter(fourthCharacter)
+        matchingScoresTestList.addCharacter(fifthCharacter)
+        
+        expect(matchingScoresTestList.size).toBe(2)
+        expect(matchingScoresTestList.printCharacters()).toHaveLength(2)
+      })
+
+      test('should handle multiple matching scores in sequence', () => {
+        matchingScoresTestList.addCharacter(sixthCharacter)
+        console.log(matchingScoresTestList)
+        expect(matchingScoresTestList.size).toBe(3)
+        expect(matchingScoresTestList.printCharacters()).toHaveLength(3)
+
+      })
+
+      
+    })
     
   })
 

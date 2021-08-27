@@ -23,6 +23,14 @@ export class CharacterLinkedList {
     }
     let current = this.head
     while (current) {
+      if (character.score === current.score) {
+        // coin toss returns either a -1 or 1
+        const value = coinToss()
+        character.score += value
+        // if (value > 0) {
+        //   // check next value
+        // }
+      }
       //prepend
       if (character.score < current.score) {
         this.head = character
@@ -40,13 +48,14 @@ export class CharacterLinkedList {
           return
         }
         // insert node inbetween current and next
-        if (tempNext.score > character.score) {
+        if (character.score < tempNext.score) {
           current.next = character
           character.next = tempNext
           this.size++
           return
         }
       }
+      
       current = current.next
     }
 
@@ -66,7 +75,12 @@ export class CharacterLinkedList {
   }
 }
 
+/**
+ * used to arbitrarily decide the order where two characters have the same score. the character being added has either 1 or -1 added to their score, to allow entry
+ * @returns 1 or -1
+ */
 export const coinToss = () => {
   const result = Math.round(Math.random())
-  return result === 0 ? -1 : 1
+  // return result === 0 ? -1 : 1
+  return -1
 }
