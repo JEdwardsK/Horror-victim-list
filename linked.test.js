@@ -141,7 +141,7 @@ describe('Character List', () => {
     })
     
     test('for a non-zero list, the first element of printed characters array should be the same as the list head\'s name value', () => {
-      printTestList.addCharacter(firstCharacter)
+      printTestList.addCharacter(thirdCharacter)
       const characters = printTestList.printCharacters()
       expect(characters[0]).toMatch(printTestList.head.name)
     })
@@ -149,7 +149,7 @@ describe('Character List', () => {
     test('length of printed characters array should equal List size attribute', () => {
       const characters = printTestList.printCharacters()
       console.log('characters', characters)
-      expect(characters.length).toEqual(printTestList.size)
+      expect(characters).toHaveLength(printTestList.size)
     })
   })
   
@@ -163,8 +163,12 @@ describe('Coin Toss function', () => {
   })
   
   test('should return either 1 or -1', () => {
-    expect(coinToss()).toEqual(1 || -1)
+    const result = coinToss()
+    // expect(result).toBe(-1 || 1)
+    expect([1,-1]).toContain(result)
   })
+
+  test.todo('add should return 1 or -1 on multiple calls?')
 })
 
 

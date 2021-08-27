@@ -32,7 +32,6 @@ export class CharacterLinkedList {
       }
       //append
       if (character.score > current.score) {
-        console.log('list', this)
         const tempNext = current.next
         //node is at end of list
         if (!tempNext) {
