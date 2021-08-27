@@ -21,6 +21,37 @@ export class CharacterLinkedList {
       this.size++
       return
     }
-    if(this.head)
+    let current = this.head
+    if (current.score > character.score) {
+      this.head = character
+      this.next = current
+      this.size++
+      return
+    }
+    if (current.score < character.score) {
+      this.next = character
+      this.size++
+    }
+
+  }
+
+  printCharacters() {
+    if (!this.head) return []
+
+    const characterList = []
+    let current = this.head
+    console.log(current)
+    while (current) {
+      characterList.push(current.name)
+      current = current.next
+    }
+    return characterList
   }
 }
+
+
+const test = new CharacterNode('test', 19)
+const testList = new CharacterLinkedList()
+testList.addCharacter(test)
+const characters = testList.printCharacters()
+

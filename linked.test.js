@@ -1,18 +1,22 @@
 import { CharacterLinkedList, CharacterNode } from './linked'
 
-const dummyCharacter = new CharacterNode('amy', 10)
+const firstCharacter = new CharacterNode('amy', 10)
+const secondCharacter = new CharacterNode('james', 2)
+const thirdCharacter = new CharacterNode('charlie', 20)
+
+
 
 test('character has name', () => {
-  expect(dummyCharacter.name).toEqual('amy')
+  expect(firstCharacter.name).toEqual('amy')
 })
 
 test('character has score', () => {
-  expect(dummyCharacter.score).toEqual(10)
+  expect(firstCharacter.score).toEqual(10)
 })
 
 test('character score should be number type', () => {
 
-  expect(typeof dummyCharacter.score).toEqual('number')
+  expect(typeof firstCharacter.score).toEqual('number')
 })
 
 
@@ -37,27 +41,84 @@ test('should have an add character function', () => {
 
 test('if empty list, input character should become head', () => {
   const emptyList = new CharacterLinkedList()
-  emptyList.addCharacter(dummyCharacter)
-  expect(emptyList.head).toEqual(dummyCharacter)
+  emptyList.addCharacter(firstCharacter)
+  expect(emptyList.head).toEqual(firstCharacter)
 })
 
-test('size attribute should increase when a character is added', () => {
-  console.log(dummyList)
+test('size attribute should increase when a character is added to empty list', () => {
   const formerSize = dummyList.size
-  console.log(formerSize)
-  dummyList.addCharacter(dummyCharacter)
-  console.log(dummyList)
+  
+  dummyList.addCharacter(firstCharacter)
+  
   const newSize = dummyList.size
-  console.log(newSize)
+
   expect(newSize).toEqual(formerSize + 1)
 })
 
+test('has attribute, print characters', () => {
+  expect(dummyList.printCharacters).toBeDefined()
+})
+
+test('print function returns an array', () => {
+  expect(typeof dummyList.printCharacters()).toEqual('object')
+})
+
+test('returns empty array if list is empty', () => {
+  const emptyList = new CharacterLinkedList()
+  const characters = emptyList.printCharacters()
+  expect(emptyList.head).toEqual(null)
+  expect(characters).toEqual([])
+})
+
+test('first element of printed characters array is same as the list head\'s name value', () => {
+  const characters = dummyList.printCharacters()
+  console.log(characters)
+  expect(characters[0]).toEqual(dummyList.head.name)
+})
+
+test('length of printed characters array equals List size attribute', () => {
+  const characters = dummyList.printCharacters()
+  expect(characters.length).toEqual(dummyList.size)
+})
+
+
+
+
+const prependTestList = new CharacterLinkedList()
 
 test('if character score is less than head, prepend', () => {
-  const secondCharacter = new CharacterNode('james', 2)
-  dummyList.addCharacter(secondCharacter)
-  expect(dummyList.size).toEqual(2)
+  prependTestList.addCharacter(firstCharacter)
+  prependTestList.addCharacter(secondCharacter)
+  expect(prependTestList.head).toEqual(secondCharacter)
+  expect(prependTestList.next).toEqual(firstCharacter)
 })
+
+test('should increase size attribute when character is prepended', () => {
+  expect(prependTestList.size).toEqual(2)
+})
+
+const appendTestList = new CharacterLinkedList()
+
+test('if character score is greater than head, append', () => {
+  appendTestList.addCharacter(firstCharacter)
+  appendTestList.addCharacter(thirdCharacter)
+  expect(appendTestList.head).toEqual(firstCharacter)
+  expect(appendTestList.next).toEqual(thirdCharacter)
+})
+
+test('should increase size attribute when character is appended', () => {
+  expect(appendTestList.size).toEqual(2)
+})
+
+const size3TestList = new CharacterLinkedList()
+
+test('should append and prepend head', () => {
+  size3TestList.addCharacter(firstCharacter)
+  size3TestList.addCharacter(secondCharacter)
+  size3TestList.addCharacter(thirdCharacter)
+  expect(size3TestList.head).toEqual(firstCharacter)
+})
+
 
 
 
