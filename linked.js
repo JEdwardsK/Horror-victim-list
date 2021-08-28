@@ -20,14 +20,17 @@ export class CharacterLinkedList {
     if (!this.head) {
       this.head = character
       this.size++
-      this.usedScores.set(character.score)
+      // this.usedScores.set(character.score)
       return
     }
     let current = this.head
     while (current) {
       if (current.score === character.score) {
-        current.name = [current.name]
-        current.name.push(current.name)
+        if(typeof current.name === 'string') {
+          current.name = [current.name]
+        }
+        current.name.push(character.name)
+        this.size++
         return
       }
       //prepend
@@ -44,7 +47,7 @@ export class CharacterLinkedList {
         //node is at end of list
         if (!tempNext) {
           current.next = character
-          this.usedScores.set(character.score)
+          // this.usedScores.set(character.score)
           this.size++
           return
         }
@@ -52,7 +55,7 @@ export class CharacterLinkedList {
         if (character.score < tempNext.score) {
           current.next = character
           character.next = tempNext
-          this.usedScores.set(character.score)
+          // this.usedScores.set(character.score)
           this.size++
           return
         }

@@ -1,10 +1,19 @@
 import { CharacterLinkedList, CharacterNode, coinToss } from './linked'
-
+import 'jest-extended'
 const stringify = (obj, message = '') => console.log(message + ' =>', JSON.stringify(obj, null, 2))
 
-const firstCharacter = new CharacterNode('amy', 10)
-const secondCharacter = new CharacterNode('james', 2)
-const thirdCharacter = new CharacterNode('charlie', 20)
+let firstCharacter, secondCharacter, thirdCharacter, fourthCharacter, fifthCharacter, sixthCharacter
+
+// reset the values after each test
+beforeEach(() => {
+  firstCharacter = new CharacterNode('amy', 10)
+  secondCharacter = new CharacterNode('james', 2)
+  thirdCharacter = new CharacterNode('charlie', 20)
+  fourthCharacter = new CharacterNode('ben', 5)
+  fifthCharacter = new CharacterNode('jenny', 5)
+  sixthCharacter = new CharacterNode('tammie', 5)
+})
+
 
 describe('Character Nodes', () => {
   test('should be an instance of the CharacterNode class', () => {
@@ -13,7 +22,6 @@ describe('Character Nodes', () => {
   test('should have a \'name\' attribute', () => {
     expect(firstCharacter.name).toMatch('amy')
   })
-
   test('should have a \'score\' attribute', () => {
     expect(firstCharacter.score).toEqual(10)
   })
@@ -44,7 +52,7 @@ describe('Character List', () => {
     
     
     test('should have size attribute', () => {
-      expect(typeof dummyList.size).toBe('number')
+      expect(dummyList.size).toBeNumber()
     })
 
     test('should have an add character method', () => {
@@ -81,9 +89,9 @@ describe('Character List', () => {
 
     test.todo('add should check if value is present on usedScores')
 
-    test('should add score to usedScores Map', () => {
-      expect(emptyList.usedScores.has(firstCharacter.score)).toBe(true)
-    })
+    // test('should add score to usedScores Map', () => {
+    //   expect(emptyList.usedScores.has(firstCharacter.score)).toBe(true)
+    // })
     
     describe('Prepend Character to list', () => {
       const prependTestList = new CharacterLinkedList()
@@ -128,37 +136,51 @@ describe('Character List', () => {
         expect(size3TestList.head.next.next).toEqual(thirdCharacter)
       })
       
-      test('should print list of 3 characters in the expected order', () => {
+      test.todo('should print list of 3 characters in the expected order'/*, () => {
         const characters  = size3TestList.printCharacters()
+        expect(characters).toBeArrayOfSize(3)
         expect(characters).toEqual(['james', 'amy', 'charlie'])
-      })
+      }*/)
     })
     
     describe('handling entries with matching scores', () => {
       const matchingScoresTestList = new CharacterLinkedList()
-      const fourthCharacter = new CharacterNode('ben', 5)
-      const fifthCharacter = new CharacterNode('jenny', 5)
-      const sixthCharacter = new CharacterNode('tammie', 5)
+      
+      // test.todo('should run coin toss function if scores are identical')
 
-      
-      test.todo('should run coin toss function if scores are identical')
-      
-      
-      test('should update size count despite matching scores', () => {
+      test('should update the name value from a string to an array of strings', () => {
         matchingScoresTestList.addCharacter(fourthCharacter)
         matchingScoresTestList.addCharacter(fifthCharacter)
         
-        expect(matchingScoresTestList.size).toBe(2)
-        expect(matchingScoresTestList.printCharacters()).toHaveLength(2)
+        console.log(matchingScoresTestList.head.name)
+        expect(matchingScoresTestList.head.name).toBeArray()     
       })
 
-      test('should handle multiple matching scores in sequence', () => {
+      test('should contain expected string inputs in array', () => {
+        
+        expect(matchingScoresTestList.head.name).toIncludeAllMembers([fourthCharacter.name, fifthCharacter.name])
+      })
+      
+      test('should prevent nested arrays', () => {
         matchingScoresTestList.addCharacter(sixthCharacter)
-        console.log(matchingScoresTestList)
-        expect(matchingScoresTestList.size).toBe(3)
-        expect(matchingScoresTestList.printCharacters()).toHaveLength(3)
 
+        expect(matchingScoresTestList.head.name).toBeArrayOfSize(3)
       })
+      
+      
+      test('should update size count despite matching scores', () => {
+        expect(matchingScoresTestList.size).toBe(3)
+      })
+
+
+
+      // test('should handle multiple matching scores in sequence', () => {
+      //   matchingScoresTestList.addCharacter(sixthCharacter)
+      //   console.log(matchingScoresTestList)
+      //   expect(matchingScoresTestList.size).toBe(3)
+      //   expect(matchingScoresTestList.printCharacters()).toHaveLength(3)
+
+      // })
 
       
     })
@@ -181,7 +203,8 @@ describe('Character List', () => {
     })
     
     test('for a non-zero list, the first element of printed characters array should be the same as the list head\'s name value', () => {
-      printTestList.addCharacter(thirdCharacter)
+      printTestList.addCharacter(sixthCharacter)
+      console.log(printTestList.head)
       const characters = printTestList.printCharacters()
       expect(characters[0]).toMatch(printTestList.head.name)
     })
@@ -204,8 +227,9 @@ describe('Coin Toss function', () => {
   
   test('should return either 1 or -1', () => {
     const result = coinToss()
-    // expect(result).toBe(-1 || 1)
-    expect([1,-1]).toContain(result)
+    const isPlusOrMinusOne = n => n === 1 || n === -1
+
+    expect(result).toSatisfy(isPlusOrMinusOne)
   })
 
   test.todo('add should return 1 or -1 on multiple calls?')
