@@ -55,11 +55,16 @@ describe('Character List', () => {
       expect(dummyList.printCharacters).toBeDefined()
     })
 
+    test('should have a usedScores attribute, type Map', () => {
+      expect(dummyList.usedScores).toBeDefined()
+      // expect(typeof dummyList.usedScores).toBe('Map')
+    })
+    
   })
 
   describe('Add Character to list functionality', () => {
+    const emptyList = new CharacterLinkedList()
     test('if empty list, input character should become head', () => {
-      const emptyList = new CharacterLinkedList()
       emptyList.addCharacter(firstCharacter)
       expect(emptyList.head).toEqual(firstCharacter)
     })
@@ -74,6 +79,12 @@ describe('Character List', () => {
       expect(newSize).toEqual(formerSize + 1)
     })
 
+    test.todo('add should check if value is present on usedScores')
+
+    test('should add score to usedScores Map', () => {
+      expect(emptyList.usedScores.has(firstCharacter.score)).toBe(true)
+    })
+    
     describe('Prepend Character to list', () => {
       const prependTestList = new CharacterLinkedList()
 

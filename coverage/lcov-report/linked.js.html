@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">90.48% </span>
+                <span class="strong">89.58% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>38/42</span>
+                <span class='fraction'>43/48</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">90.24% </span>
+                <span class="strong">89.36% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>37/41</span>
+                <span class='fraction'>42/47</span>
             </div>
         
             
@@ -142,7 +142,16 @@
 <a name='L83'></a><a href='#L83'>83</a>
 <a name='L84'></a><a href='#L84'>84</a>
 <a name='L85'></a><a href='#L85'>85</a>
-<a name='L86'></a><a href='#L86'>86</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L86'></a><a href='#L86'>86</a>
+<a name='L87'></a><a href='#L87'>87</a>
+<a name='L88'></a><a href='#L88'>88</a>
+<a name='L89'></a><a href='#L89'>89</a>
+<a name='L90'></a><a href='#L90'>90</a>
+<a name='L91'></a><a href='#L91'>91</a>
+<a name='L92'></a><a href='#L92'>92</a>
+<a name='L93'></a><a href='#L93'>93</a>
+<a name='L94'></a><a href='#L94'>94</a>
+<a name='L95'></a><a href='#L95'>95</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -155,6 +164,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8x</span>
 <span class="cline-any cline-yes">8x</span>
 <span class="cline-any cline-yes">8x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -164,6 +174,7 @@
 <span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-yes">6x</span>
@@ -171,12 +182,15 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">4x</span>
@@ -190,9 +204,11 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -201,6 +217,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -242,12 +260,14 @@ export class CharacterLinkedList {
   constructor () {
     this.head = null
     this.size = 0
+    this.usedScores = new Map()
   }
 &nbsp;
   addCharacter(character) {
     if (!this.head) {
       this.head = character
       this.size++
+      this.usedScores.set(character.score)
       return
     }
     let current = this.head
@@ -255,7 +275,9 @@ export class CharacterLinkedList {
       if (character.score === current.score) {
         // coin toss returns either a -1 or 1
         const value = coinToss()
-        character.score += value
+        while (this.usedScores.has(character.score)) {
+          character.score += value
+        }
         // if (value &gt; 0) {
         //   // check next value
         // }
@@ -264,6 +286,7 @@ export class CharacterLinkedList {
       if (character.score &lt; current.score) {
         this.head = character
         character.next = current
+        this.usedScores.set(character.score)
         this.size++
         return
       }
@@ -273,6 +296,7 @@ export class CharacterLinkedList {
         //node is at end of list
         if (!tempNext) {
           current.next = character
+          this.usedScores.set(character.score)
           this.size++
           return
         }
@@ -280,12 +304,15 @@ export class CharacterLinkedList {
         <span class="missing-if-branch" title="if path not taken" >I</span>if (character.score &lt; tempNext.score) {
 <span class="cstat-no" title="statement not covered" >          current.next = character</span>
 <span class="cstat-no" title="statement not covered" >          character.next = tempNext</span>
+<span class="cstat-no" title="statement not covered" >          this.usedScores.set(character.score)</span>
 <span class="cstat-no" title="statement not covered" >          this.size++</span>
 <span class="cstat-no" title="statement not covered" >          return</span>
         }
       }
       
       current = current.next
+&nbsp;
+      // sort by score 
     }
 &nbsp;
   }
@@ -319,7 +346,7 @@ export const coinToss = () =&gt; {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Fri Aug 27 2021 04:49:07 GMT-0400 (Eastern Daylight Time)
+                at Fri Aug 27 2021 05:45:42 GMT-0400 (Eastern Daylight Time)
             </div>
         </div>
         <script src="prettify.js"></script>

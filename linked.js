@@ -13,28 +13,28 @@ export class CharacterLinkedList {
   constructor () {
     this.head = null
     this.size = 0
+    this.usedScores = new Map()
   }
 
   addCharacter(character) {
     if (!this.head) {
       this.head = character
       this.size++
+      this.usedScores.set(character.score)
       return
     }
     let current = this.head
     while (current) {
-      if (character.score === current.score) {
-        // coin toss returns either a -1 or 1
-        const value = coinToss()
-        character.score += value
-        // if (value > 0) {
-        //   // check next value
-        // }
+      if (current.score === character.score) {
+        current.name = [current.name]
+        current.name.push(current.name)
+        return
       }
       //prepend
       if (character.score < current.score) {
         this.head = character
         character.next = current
+        this.usedScores.set(character.score)
         this.size++
         return
       }
@@ -44,6 +44,7 @@ export class CharacterLinkedList {
         //node is at end of list
         if (!tempNext) {
           current.next = character
+          this.usedScores.set(character.score)
           this.size++
           return
         }
@@ -51,12 +52,15 @@ export class CharacterLinkedList {
         if (character.score < tempNext.score) {
           current.next = character
           character.next = tempNext
+          this.usedScores.set(character.score)
           this.size++
           return
         }
       }
       
       current = current.next
+
+      // sort by score 
     }
 
   }
