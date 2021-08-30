@@ -111,7 +111,7 @@ export const scores = {
   police: 4,
   mentor: 5,
   scientists: 5,
-  niceGuy:
+  niceGuy: 2
 
 }
 
@@ -158,10 +158,10 @@ const randomScore = modifier => {
       score = randomNumber * 10
       break;
     case 'likely':
-      score = randomNumber * 
+      score = randomNumber * .5
       break;
     case 'very likely':
-      score = randomNumber * 10
+      score = randomNumber * .1
       break;
     case 'red shirt':
       score = randomNumber * -10
