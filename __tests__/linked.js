@@ -1,4 +1,4 @@
-import { CharacterLinkedList, CharacterNode, coinToss } from './linked'
+import { CharacterLinkedList, CharacterNode, coinToss, questions, scores } from '../linked'
 import 'jest-extended'
 const stringify = (obj, message = '') => console.log(message + ' =>', JSON.stringify(obj, null, 2))
 
@@ -56,11 +56,11 @@ describe('Character List', () => {
     })
 
     test('should have an add character method', () => {
-      expect(dummyList.addCharacter).toBeDefined()
+      expect(dummyList.addCharacter).toBeFunction()
     })
 
     test('should have a print characters method', () => {
-      expect(dummyList.printCharacters).toBeDefined()
+      expect(dummyList.printCharacters).toBeFunction()
     })
 
     test('should have a usedScores attribute, type Map', () => {
@@ -235,7 +235,29 @@ describe('Coin Toss function', () => {
   test.todo('add should return 1 or -1 on multiple calls?')
 })
 
+describe ('Score object', () => {
 
+  test('should be an object', () => {
+    expect(scores).toBeObject()
+  })
+
+  test('object values are all numbers', () => {
+    const isNumber = val => typeof val === 'number'
+    expect(Object.values(scores)).toSatisfyAll(isNumber)
+  })
+})
+
+describe('Questions', () => {
+  test('should be an object', () => {
+    expect(questions).toBeObject()
+  })
+  
+  test('all values should be strings', () => {
+    const isString = val => typeof val === 'string'
+    expect(Object.values(questions)).toSatisfyAll(isString)
+  })
+  
+})
 
 
 

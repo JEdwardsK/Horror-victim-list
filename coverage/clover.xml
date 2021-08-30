@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1630116292131" clover="3.2.0">
-  <project timestamp="1630116292131" name="All files">
-    <metrics statements="46" coveredstatements="42" conditionals="16" coveredconditionals="14" methods="5" coveredmethods="5" elements="67" coveredelements="61" complexity="0" loc="46" ncloc="46" packages="1" files="1" classes="1"/>
+<coverage generated="1630119256641" clover="3.2.0">
+  <project timestamp="1630119256641" name="All files">
+    <metrics statements="48" coveredstatements="44" conditionals="16" coveredconditionals="14" methods="5" coveredmethods="5" elements="69" coveredelements="63" complexity="0" loc="48" ncloc="48" packages="1" files="1" classes="1"/>
     <file name="linked.js" path="/Users/serina/Documents/coding-stuff/Horror-victim-list/linked.js">
-      <metrics statements="46" coveredstatements="42" conditionals="16" coveredconditionals="14" methods="5" coveredmethods="5"/>
-      <line num="6" count="6" type="stmt"/>
-      <line num="7" count="6" type="stmt"/>
-      <line num="8" count="6" type="stmt"/>
+      <metrics statements="48" coveredstatements="44" conditionals="16" coveredconditionals="14" methods="5" coveredmethods="5"/>
+      <line num="6" count="186" type="stmt"/>
+      <line num="7" count="186" type="stmt"/>
+      <line num="8" count="186" type="stmt"/>
       <line num="14" count="8" type="stmt"/>
       <line num="15" count="8" type="stmt"/>
       <line num="16" count="8" type="stmt"/>
@@ -16,12 +16,12 @@
       <line num="24" count="7" type="stmt"/>
       <line num="26" count="6" type="stmt"/>
       <line num="27" count="6" type="stmt"/>
-      <line num="28" count="8" type="cond" truecount="2" falsecount="0"/>
-      <line num="29" count="3" type="cond" truecount="2" falsecount="0"/>
-      <line num="30" count="2" type="stmt"/>
-      <line num="32" count="3" type="stmt"/>
-      <line num="33" count="3" type="stmt"/>
-      <line num="34" count="3" type="stmt"/>
+      <line num="28" count="7" type="cond" truecount="2" falsecount="0"/>
+      <line num="29" count="2" type="cond" truecount="2" falsecount="0"/>
+      <line num="30" count="1" type="stmt"/>
+      <line num="32" count="2" type="stmt"/>
+      <line num="33" count="2" type="stmt"/>
+      <line num="34" count="2" type="stmt"/>
       <line num="37" count="5" type="cond" truecount="2" falsecount="0"/>
       <line num="38" count="2" type="stmt"/>
       <line num="39" count="2" type="stmt"/>
@@ -31,15 +31,15 @@
       <line num="45" count="3" type="cond" truecount="1" falsecount="1"/>
       <line num="46" count="3" type="stmt"/>
       <line num="48" count="3" type="cond" truecount="2" falsecount="0"/>
-      <line num="49" count="1" type="stmt"/>
-      <line num="51" count="1" type="stmt"/>
-      <line num="52" count="1" type="stmt"/>
-      <line num="55" count="2" type="cond" truecount="1" falsecount="1"/>
+      <line num="49" count="2" type="stmt"/>
+      <line num="51" count="2" type="stmt"/>
+      <line num="52" count="2" type="stmt"/>
+      <line num="55" count="1" type="cond" truecount="1" falsecount="1"/>
       <line num="56" count="0" type="stmt"/>
       <line num="57" count="0" type="stmt"/>
       <line num="59" count="0" type="stmt"/>
       <line num="60" count="0" type="stmt"/>
-      <line num="64" count="2" type="stmt"/>
+      <line num="64" count="1" type="stmt"/>
       <line num="72" count="4" type="cond" truecount="2" falsecount="0"/>
       <line num="74" count="2" type="stmt"/>
       <line num="75" count="2" type="stmt"/>
@@ -50,6 +50,8 @@
       <line num="89" count="1" type="stmt"/>
       <line num="90" count="2" type="stmt"/>
       <line num="92" count="2" type="stmt"/>
+      <line num="95" count="1" type="stmt"/>
+      <line num="110" count="1" type="stmt"/>
     </file>
   </project>
 </coverage>
