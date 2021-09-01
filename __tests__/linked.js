@@ -252,10 +252,18 @@ describe('Questions', () => {
     expect(questions).toBeObject()
   })
   
-  test('all values should be strings', () => {
-    const isString = val => typeof val === 'string'
-    expect(Object.values(questions)).toSatisfyAll(isString)
+  test('all values should be arrays', () => {
+    Object.values(questions).forEach(question => {
+      expect(question).toBeArray()
+    })
   })
+
+  test('each value should have a string at position 0', () => {
+    Object.values(questions).forEach(question => {
+      expect(question[0]).toBeString()
+    })
+  })
+  
   
 })
 

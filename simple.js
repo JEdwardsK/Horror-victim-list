@@ -1,5 +1,6 @@
 /*------------------------------------*\
-  # CHARACTER SORTER - SIMPLE METHOD
+  # HORROR DEATH LIST GENERATOR -
+  SIMPLE METHOD
 \*------------------------------------*/
 /*
   This version asks if the character is the archetype, if they are then the name is pushed into the relevant key on a Map. 

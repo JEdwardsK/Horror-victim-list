@@ -51,7 +51,7 @@ export class CharacterLinkedList {
           this.size++
           return
         }
-        // insert node inbetween current and next
+        // insert node in between current and next
         if (character.score < tempNext.score) {
           current.next = character
           character.next = tempNext
@@ -94,17 +94,18 @@ export const coinToss = () => {
 
 export const scores = {
   child: 1,
-  teenager: 5,
+  teenager: 6,
+  youngAdult: 5,
   adult: 4,
   OAP: 3,
   virgin: 1,
   Slut: 10,
   Hero: 1,
   Villain: 9,
-  BlackGuy: 9000,
+  black: 9000,
   FinalGirl: -9000,
-  EthnicMinority: 20,
-  White: 1,
+  ethnic_Minority: 20,
+  white: 1,
   redShirt: -10,
   male: 5,
   female: 7,
@@ -114,18 +115,18 @@ export const scores = {
   niceGuy: 2
 
 }
-
+const yesNo = ['y', 'n']
 export const questions = {
-  age: 'how old is the character?',
-  ethnicity: 'what ethnicity is the character?',
-  isProtagonist: 'is the character the protagonist?',
-  isAntagonist: 'is the character the main villain?',
-  gender: 'is the character male or female?',
-  occupation: 'what does the character do for a living?',
-  isRelated: 'is the character related to the protagonist?',
-  isMentallyDisabled: 'does the character have a mental disability?',
-  isPhysicallyDisabled: 'does the character have a physical disability?',
-  isNiceGuy: 'is the character generally the most average amongst the group'
+  age: ['how old is the character?',[['0 - 10', 'child'],['11-21', 'teenager'],['21-30', 'youngAdult'], ['31-60', 'adult'], ['61+', 'OAP']]],
+  ethnicity: ['what ethnicity is the character?',['white', 'black', 'ethnic_Minority']],
+  isProtagonist: ['is the character the protagonist?', yesNo],
+  isAntagonist: ['is the character the main villain?'],
+  gender: ['is the character male or female?'],
+  occupation: ['what does the character do for a living?'],
+  isRelated: ['is the character related to the protagonist?'],
+  isMentallyDisabled: ['does the character have a disability?', [ 'mental', 'physical', 'none']],
+  isNiceGuy: ['is the character generally the most average amongst the group']
+
 }
 
 export const bonus = {
