@@ -18,24 +18,65 @@ import { CharacterLinkedList, CharacterNode, questions, scores } from './linked.
 
 const deathList = new CharacterLinkedList()
 
-const LinkedListCLI = async () => {
-  const response = await prompts([
-    {
+const selectPrompt = (question, name) => {
+  return {
     type:'select',
-    name: 'age',
-    message: questions.age[0],
-    choices: questions.age[1].map(option => {
+    name: name,
+    message: question[0],
+    choices: question[1].map(option => {
       const [key, value] = option
-      return {title: key, value: scores[value]}
+      return {title: key, value: !value ? 0 : scores[value]}
     })
     }
+}
+const selectBoolean = (question, name) => {
+  return {
+    type:'select',
+    name: name,
+    message: question[0],
+    choices: question[1].map(option => {
+      const [key, value] = option
+      return {title: key, value: value}
+    })
+    }
+}
+
+const skipBasedPrevious = (question, name) => {
+  return {
+    type: prev => prev ? null : 'select',
+    name: name,
+    message: question[0],
+    choices: question[1].map(option => {
+      const [key, value] = option
+      return {title: key, value: value}
+    })
+  }
+}
+
+
+const LinkedListCLI = async () => {
+  const response = await prompts([
+    selectPrompt(questions.age, 'age'),
+    selectPrompt(questions.ethnicity, 'ethnicity'),
+    selectBoolean(questions.isProtagonist, 'protagonist'),
+    skipBasedPrevious(questions.isAntagonist, 'villain'),
+    selectPrompt(questions.gender, 'gender'),
+    selectPrompt(questions.relationship, 'relationToProtagonist'),
+    selectPrompt(questions.hasDisability, 'hasDisability'),
+    selectPrompt(questions.occupation, 'occupation'),
+    selectBoolean(questions.isNiceGuy, 'niceGuy'),
   ])
+
+  if (response.protagonist) response.protagonist = scores.Hero
+  else if (response.antagonist) response.antagonist = scores.Villain
+
+  if (response.niceGuy) response.niceGuy = scores.niceGuy
 
   console.log(response)
   const score = Object.values(response).reduce((a,b) => a+b)
-  const newCharacter = new CharacterNode(characterName, score)
-  deathList.addCharacter(newCharacter)
-  nextCharacterOrEnd()
+  // const newCharacter = new CharacterNode(characterName, score)
+  // deathList.addCharacter(newCharacter)
+  // nextCharacterOrEnd()
 }
 const nextCharacterOrEnd = async () => {
   const response = await prompts ({
@@ -52,5 +93,4 @@ const nextCharacterOrEnd = async () => {
     deathList.printCharacters()
   }
 }
-nextCharacterOrEnd()
-
+LinkedListCLI()

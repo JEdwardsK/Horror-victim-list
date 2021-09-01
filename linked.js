@@ -98,34 +98,69 @@ export const scores = {
   youngAdult: 5,
   adult: 4,
   OAP: 3,
+
   virgin: 1,
   Slut: 10,
+
   Hero: 1,
   Villain: 9,
-  black: 9000,
   FinalGirl: -9000,
-  ethnic_Minority: 20,
+
+  black: 9000,
+  ethnicMinority: 20,
   white: 1,
-  redShirt: -10,
+
   male: 5,
   female: 7,
+  
+  bestFriend: 3,
+  parent: 3,
+  sibling: 3,
+
+  mentalDisability: 1,
+  physicalDisability: 5,
+
+  redShirt: -10, //guidance counsellor
   police: 4,
   mentor: 5,
-  scientists: 5,
+  scientist: 5,
+
   niceGuy: 2
 
 }
-const yesNo = ['y', 'n']
+
+console.log(scores.campCounsellor)
+const yesNo = [['yes', true],['no', false]]
 export const questions = {
-  age: ['how old is the character?',[['0 - 10', 'child'],['11-21', 'teenager'],['21-30', 'youngAdult'], ['31-60', 'adult'], ['61+', 'OAP']]],
-  ethnicity: ['what ethnicity is the character?',['white', 'black', 'ethnic_Minority']],
+  age: ['how old is the character?', [
+      ['0 - 10', 'child'],
+      ['11-21', 'teenager'],
+      ['21-30', 'youngAdult'], 
+      ['31-60', 'adult'], 
+      ['61+', 'OAP']
+  ]],
+  ethnicity: ['what ethnicity is the character?', [
+      ['White', 'white'], 
+      ['Black', 'black'], 
+      ['Other Ethnic Minority', 'ethnicMinority']
+  ]],
   isProtagonist: ['is the character the protagonist?', yesNo],
-  isAntagonist: ['is the character the main villain?'],
-  gender: ['is the character male or female?'],
-  occupation: ['what does the character do for a living?'],
-  isRelated: ['is the character related to the protagonist?'],
-  isMentallyDisabled: ['does the character have a disability?', [ 'mental', 'physical', 'none']],
-  isNiceGuy: ['is the character generally the most average amongst the group']
+  isAntagonist: ['is the character the main villain?', yesNo],
+  gender: ['is the character male or female?',[
+      ['male', 'male'],
+      ['female', 'female']
+    ]
+  ],
+  occupation: ['what does the character do for a living?', [
+    ['law enforcement', 'police'], 
+    ['role model/ someone protagonist looks up to/ mentor figure', 'mentor'], 
+    ['scientist or skilled technician', 'scientist'], 
+    ['guidance counsellor', 'redShirt'], 
+    ['other', false]
+  ]],
+  relationship: ['is the character related to the protagonist?',[['mother', 'parent'],['father', 'parent'],['sibling', 'sibling']]],
+  hasDisability: ['does the character have a disability?', [ ['mental', 'mentalDisability'], ['physical', 'physicalDisability'], ['none', false]]],
+  isNiceGuy: ['is the character generally the most average amongst the group', yesNo]
 
 }
 
@@ -138,6 +173,7 @@ export const bonus = {
   everythingUnlocked: 'does the character lock doors behind them when it is logical to do so?',
   scoobyGang: 'Does the character recommend splitting up to search an area?',
   loneWanderer: 'Would the character drift away from the party without telling anyone where they are going or why?',
+  oneLiner: 'Is the character likely to say cliche lines like',
   peerPressure:'if the answer was no to any of the previous questions, would the character cave to the demands of the rest of the group and follow along (they may mumble or whine that it is a bad idea after the fact)?'
 }
 
