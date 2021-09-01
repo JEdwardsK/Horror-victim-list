@@ -23,9 +23,6 @@ const characterArchetypes = [
   'virgin',
   'protagonist'
 ]
-
-const uncategorised = []
-
 const characterMap = new Map()
 
 for (let i = 0; i < characterArchetypes.length; i++) {
@@ -34,7 +31,16 @@ for (let i = 0; i < characterArchetypes.length; i++) {
   
 }
 
-let characterName = ''
+// contains characters that answer  'N' to all asked questions, resulting in not appearing in Map
+const notSorted = []
+
+
+
+const questionName = { 
+  description: 'What is the character\'s name?',
+  required: true,
+  name: 'response'
+}
 
 const questionConstructor = question => {
   return {
@@ -44,12 +50,6 @@ const questionConstructor = question => {
     description: `${question} (Y/N)`,
     required: true
   }
-}
-
-const questionName = { 
-  description: 'What is the character\'s name?',
-  required: true,
-  name: 'response'
 }
 
 const questionBlack = questionConstructor('Is the character Black?')
@@ -115,7 +115,7 @@ const questions = () => {
                                           characterMap.get('nerd').unshift(characterName)
                                           nextCharacter()
                                           } else {
-                                            uncategorised.push(characterName)
+                                            notSorted.push(characterName)
                                             nextCharacter()
                                           }
                                         })
@@ -148,7 +148,7 @@ const questions = () => {
                                         characterMap.get('nerd').push(characterName)
                                         nextCharacter()
                                       } else {
-                                        uncategorised.push(characterName)
+                                        notSorted.push(characterName)
                                         nextCharacter()
                                       }
                                     })
@@ -176,7 +176,7 @@ const nextCharacter = () => {
     if (response.toLowerCase() === 'y') questions()
     else {
       console.log('Death order', Array.from(characterMap.values()).filter(group => group.length > 0).flat().join(' => '))
-      console.log('status unknown', uncategorised.join(', '))
+      console.log('status unknown', notSorted.join(', '))
     }
   })
 }
