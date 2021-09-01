@@ -15,8 +15,8 @@ const characterArchetypes = [
   'firstCharacter',
   'whore',
   'tokenMinority',
-  'cheerleader',
   'jock',
+  'cheerleader',
   'stoner',
   'nerd',
   'goodGuy',
@@ -57,12 +57,13 @@ const questionFirstChar = questionConstructor('Is the character the first charac
 const questionWhore = questionConstructor('Is the character a sexually promiscuous?')
 const questionToken = questionConstructor('Is the character from a minority group?')
 const questionGender = questionConstructor('Is the character the female?')
-const questionSporty = questionConstructor('Is the character either a member of a sports team, or in a relationship with a member of a sports team?')
+const questionSporty = questionConstructor('Is the character either: \n\t a) a member of a sports team, or  \n\t b) in a relationship with a member of a sports team?')
 const questionStoner = questionConstructor('Does the character use drugs?')
 const questionNerd = questionConstructor('Is the character a nerd?')
 const questionVirgin = questionConstructor('Is the character a virgin?')
 const questionProtagonist = questionConstructor('Is the character the protagonist?')
 const questionContinue = questionConstructor('Would you like to add another character?')
+const questionGoodGuy = questionConstructor('Is the character: \n\t generally the most likeable of the whole group \n\t love interest of the lead?')
 
 const questions = () => {
   prompt.start()
@@ -110,13 +111,20 @@ const questions = () => {
                                         characterMap.get('cheerleader').push(characterName)
                                         nextCharacter()
                                       } else {
-                                        prompt.get([questionNerd], (err, { response }) => {
+                                        prompt.get([questionGoodGuy], (err, { response }) => {
                                           if (response.toLowerCase() === 'y') {
-                                          characterMap.get('nerd').unshift(characterName)
-                                          nextCharacter()
-                                          } else {
-                                            notSorted.push(characterName)
+                                            characterMap.get('goodGuy').push(characterName)
                                             nextCharacter()
+                                          } else {
+                                            prompt.get([questionNerd], (err, {response}) => {
+                                              if (response.toLowerCase() === 'y') {
+                                                characterMap.get('nerd').unshift(characterName)
+                                                nextCharacter()
+                                              } else {
+                                                notSorted.push(characterName)
+                                                nextCharacter()
+                                              }
+                                            })
                                           }
                                         })
                                       }
@@ -175,8 +183,11 @@ const nextCharacter = () => {
   prompt.get([questionContinue], (err, { response }) => {
     if (response.toLowerCase() === 'y') questions()
     else {
-      console.log('Death order', Array.from(characterMap.values()).filter(group => group.length > 0).flat().join(' => '))
-      console.log('status unknown', notSorted.join(', '))
+      const list = Array.from(characterMap.values())
+      list.length === 0 
+        ? console.log('Death order: none listed')
+        : console.log('Death order: ', list.filter(group => group.length > 0).flat().join(' => '))
+      notSorted.length > 0 && console.log('status unknown: ', notSorted.join(', '))
     }
   })
 }
