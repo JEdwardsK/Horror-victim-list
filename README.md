@@ -4,7 +4,8 @@
   Playing about using Linked Lists
 
   packages used:
-  - [prompt](https://www.npmjs.com/package/prompt)
+  - [prompt](https://www.npmjs.com/package/prompt) - simple.js
+  - [prompts](https://www.npmjs.com/package/prompts#-types) - linkedVersion.js
   - jest
   
 ## Simple version
