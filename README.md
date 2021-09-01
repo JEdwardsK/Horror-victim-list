@@ -1,8 +1,11 @@
 # Horror-victim-list (CLI)
-  Takes some characters and returns the order they should die in a horror/slasher film
+  Takes some characters and returns the order they should die in a horror/slasher film. 
+
+  Playing about using Linked Lists
 
   packages used:
-    prompt [https://www.npmjs.com/package/prompt]
+  - [prompt](https://www.npmjs.com/package/prompt)
+  - jest
   
 ## Simple version
 
@@ -79,4 +82,41 @@ Can survive to the end as the final victim before the Final Girl kills the big b
 #### Final Girl
 
 Guaranteed to make it to the end, female protagonist. Almost certainly a virgin, or at least the least promiscuous female of the group. Avoids drugs, smoking or alcohol. A 'pure' heart. Generally starts in a weak position building courage to face the big bad at the end and triumph. 
+
+## Linked List version
+
+### How it works
+
+Characters  are assigned a score value. After this score is generated, a new character node is created using the following `CharacterNode` class:
+```javascript
+class CharacterNode {
+  constructor (name, score) {
+    this.name = name
+    this.score = score
+    this.next = null
+  }
+}
+```
+A list is constructed using the following `CharacterLinkedList` class :
+```javascript
+export class CharacterLinkedList {
+  constructor () {
+    this.head = null
+    this.size = 0
+    this.usedScores = new Map()
+  }
+
+  addCharacter(character) {//...
+  }
+
+  printCharacters() {//...
+  }
+} 
+```
+
+using the `addCharacter` method, a character runs through the linked list, placing themselves in before or after a node depending on if the score is higher or lower. Where the score is equal, the current node's name changes from a string to an array of strings. This could symbolise characters dying in a group
+
+After all the characters are added, the `printCharacters()` method returns an array of character names in order.
+
+
 
