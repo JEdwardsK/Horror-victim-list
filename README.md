@@ -23,8 +23,22 @@ To run, from project root in terminal run `yarn; node simple.js`
       } else { //...
   ```
  
-  If the response is 'y' the character is added to the relevent key in the Map. Then, `nextCharacter()` prompts whether to add another character. If no, the character list is returned as a string. If yes, `questions()` is run again.
+  If the response is `'y'` the character is added to the relevent key in the Map. Then, `nextCharacter()` prompts whether to add another character. If no, the character list is returned as a string. If yes, `questions()` is run again.
 
+  ```javascript
+  const nextCharacter = () => {
+    prompt.get([questionContinue], (err, { response }) => {
+      if (response.toLowerCase() === 'y') questions()
+      else {
+        const list = Array.from(characterMap.values())
+        list.length === 0 
+          ? console.log('Death order: none listed')
+          : console.log('Death order: ', list.filter(group => group.length > 0).flat().join(' => '))
+        notSorted.length > 0 && console.log('status unknown: ', notSorted.join(', '))
+      }
+    })
+  }
+  ```
   If the character reaches the end of the chained prompts, they are added to an array `notSorted`
 
   #### Black Guy Dies First
