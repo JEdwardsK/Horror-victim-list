@@ -3,6 +3,10 @@
 
   Playing about using Linked Lists
 
+  TODO: 
+  - [ ] finalise scores for scores object
+  - [ ] add some more questions and scores (optional)
+
   packages used:
   - [prompt](https://www.npmjs.com/package/prompt) - simple.js
   - [prompts](https://www.npmjs.com/package/prompts#-types) - linkedVersion.js
@@ -174,3 +178,8 @@ After all the characters are added, the `printCharacters()` method returns an ar
 
 
 
+
+
+## Bonus version
+
+Asks some yes/no questions, returns a string as a result as to the character's suitability for the genre
