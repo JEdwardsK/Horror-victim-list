@@ -221,18 +221,15 @@ describe('Character List', () => {
 })
 
 describe('Coin Toss function', () => {
-  test('should return a number', () => {
-    expect(typeof coinToss()).toBe('number')
-  })
-  
   test('should return either 1 or -1', () => {
-    const result = coinToss()
-    const isPlusOrMinusOne = n => n === 1 || n === -1
+    const valA = 'A'
+    const valB = 'B'
+    const isValAOrB = value => value === valA || value === valB
+    const result = coinToss(valA, valB)
 
-    expect(result).toSatisfy(isPlusOrMinusOne)
+    expect(result).toSatisfy(isValAOrB)
   })
 
-  test.todo('add should return 1 or -1 on multiple calls?')
 })
 
 describe ('Score object', () => {
