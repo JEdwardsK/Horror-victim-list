@@ -9,7 +9,7 @@
 
   packages used:
   - [prompt](https://www.npmjs.com/package/prompt) - simple.js
-  - [prompts](https://www.npmjs.com/package/prompts#-types) - linkedVersion.js
+  - [prompts](https://www.npmjs.com/package/prompts#-types) - linkedVersion.js bonus.js
   - jest
   
 To run from the root first run `yarn`. Then depending on which questions you would like to answer:
