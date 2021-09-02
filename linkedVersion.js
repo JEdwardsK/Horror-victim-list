@@ -56,6 +56,7 @@ const skipBasedPrevious = (question, name) => {
 
 const LinkedListCLI = async () => {
   const response = await prompts([
+    { type:'text', name: 'characterName', message: 'What is the character\'s name'},
     selectPrompt(questions.age, 'age'),
     selectPrompt(questions.ethnicity, 'ethnicity'),
     selectBoolean(questions.isProtagonist, 'protagonist'),
@@ -67,17 +68,23 @@ const LinkedListCLI = async () => {
     selectBoolean(questions.isNiceGuy, 'niceGuy'),
   ])
 
-  if (response.protagonist) response.protagonist = scores.Hero
-  else if (response.antagonist) response.antagonist = scores.Villain
+  // convert Booleans to scores
+  response.protagonist = response.protagonist ? scores.Hero : 0
+  response.antagonist = response.antagonist ? scores.Villain : 0
+  response.niceGuy = response.niceGuy ?  scores.niceGuy : 0
 
-  if (response.niceGuy) response.niceGuy = scores.niceGuy
+  const characterName = response.characterName
+  delete response.characterName
 
   console.log(response)
   const score = Object.values(response).reduce((a,b) => a+b)
-  // const newCharacter = new CharacterNode(characterName, score)
-  // deathList.addCharacter(newCharacter)
-  // nextCharacterOrEnd()
+  const tropes = Object.keys(response)
+  console.log(score)
+  const newCharacter = new CharacterNode(characterName, score, tropes)
+  deathList.addCharacter(newCharacter)
+  nextCharacterOrEnd()
 }
+
 const nextCharacterOrEnd = async () => {
   const response = await prompts ({
     type:'select',
@@ -90,7 +97,10 @@ const nextCharacterOrEnd = async () => {
   })
   if (response.continue) LinkedListCLI()
   else {
-    deathList.printCharacters()
+    const list = deathList.printCharacters()
+    console.log(list)
   }
 }
+
+
 LinkedListCLI()
