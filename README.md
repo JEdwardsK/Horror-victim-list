@@ -152,10 +152,10 @@ After all the characters are added, the `printCharacters()` method returns an ar
 |adult| | average survivability, if main cast is young, they are either absent or ineffectual
 |OAP| | generally immortal, to old to die, usually there to give cryptic creepy messages
 |virgin|500 | generally immortal, to pure to die
-|Slut| | generally incredibily mortal, to impure to live
-|Hero| 8000 | the protagonist, practically immortal til the end, unless either heroic sacrifice is required, or everyone must die
-|Villain| 7000 | immortal until last act Second to last to die. required as is the person doing all the killing
-|FinalGirl| 9000| Final Girls never dies
+|slut| | generally incredibily mortal, to impure to live
+|hero| 8000 | the protagonist, practically immortal til the end, unless either heroic sacrifice is required, or everyone must die
+|villain| 7000 | immortal until last act Second to last to die. required as is the person doing all the killing
+|finalGirl| 9000| Final Girls never dies
 |black| -9000| Black Dudes Die First.
 |minorityGroup| |see above, applies to other minorities in the group
 |white| | generally safe

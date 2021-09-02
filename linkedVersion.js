@@ -69,8 +69,8 @@ const LinkedListCLI = async () => {
   ])
 
   // convert Booleans to scores
-  response.protagonist = response.protagonist ? scores.Hero : 0
-  response.antagonist = response.antagonist ? scores.Villain : 0
+  response.protagonist = response.protagonist ? scores.hero : 0
+  response.antagonist = response.antagonist ? scores.villain : 0
   response.niceGuy = response.niceGuy ?  scores.niceGuy : 0
 
   const characterName = response.characterName

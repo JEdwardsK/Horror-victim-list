@@ -105,11 +105,11 @@ export const scores = {
   OAP: 3,
 
   virgin: 1,
-  Slut: 10,
+  slut: 10,
 
-  Hero: 1,
+  hero: 1,
   Villain: 9,
-  FinalGirl: -9000,
+  finalGirl: -9000,
 
   black: 9000,
   ethnicMinority: 20,
