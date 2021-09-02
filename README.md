@@ -8,10 +8,13 @@
   - [prompts](https://www.npmjs.com/package/prompts#-types) - linkedVersion.js
   - jest
   
+To run from the root first run `yarn`. Then depending on which questions you would like to answer:
+
+- simple version - `node simple.js`
+- linked list version - `node linkedVersion.js`
+- bonus questions (short) - `node bonus.js`
+
 ## Simple version
-
-To run, from project root in terminal run `yarn; node simple.js`
-
 ### How it works
   Starts by storing the input name as a variable. Uses a Map with archetypes as keys and arrays as values. 
   
@@ -114,10 +117,60 @@ export class CharacterLinkedList {
   }
 } 
 ```
+First following the prompts package, a response object is created using the inputs from the users in response to questions asked.
 
-using the `addCharacter` method, a character runs through the linked list, placing themselves in before or after a node depending on if the score is higher or lower. Where the score is equal, the current node's name changes from a string to an array of strings. This could symbolise characters dying in a group
+(example)
+```javascript
+{
+  characterName: 'John Doe',
+  age: 5,
+  ethnicity: 1,
+  protagonist: 1,
+  gender: 5,
+  relationToProtagonist: 3,
+  hasDisability: 1,
+  occupation: 4,
+}
+```
+
+The name is set to a variable `characterName` and deleted. Using `Object.values()` and `reduce()` the total `score` is generated. a new CharacterNode is created using these values.
+
+Using the `addCharacter` method, a character runs through the linked list, placing themselves in before or after a node depending on if the score is higher or lower. Where the score is equal, the current node's name changes from a string to an array of strings. This could symbolise characters dying in a group.
 
 After all the characters are added, the `printCharacters()` method returns an array of character names in order.
+
+### Scores
+|Character Trait | Scores | Descriptors|
+|---|---|---|
+|child| | generally immortal, to young to die
+|teenager| | prime age for deaths, usually age group of main characters
+|youngAdult| | second likely age for characters
+|adult| | average survivability, if main cast is young, they are either absent or ineffectual
+|OAP| | generally immortal, to old to die, usually there to give cryptic creepy messages
+|virgin|500 | generally immortal, to pure to die
+|Slut| | generally incredibily mortal, to impure to live
+|Hero| 8000 | the protagonist, practically immortal til the end, unless either heroic sacrifice is required, or everyone must die
+|Villain| 7000 | immortal until last act Second to last to die. required as is the person doing all the killing
+|FinalGirl| 9000| Final Girls never dies
+|black| -9000| Black Dudes Die First.
+|minorityGroup| |see above, applies to other minorities in the group
+|white| | generally safe
+|male| | as likely or slightly less likely to die compared to women dependant on situation. Genre tends towards women as people [don't respond](https://tvtropes.org/pmwiki/pmwiki.php/Main/MenAreTheExpendableGender) to men displaying weakness and abject terror
+|female| | more likely to die than male counterparts, but more likely to have deaths spread apart for even screams throughout, see above regarding gender expectations
+|bestFriend| | Coin toss. Either dies early to set the stakes or later as the final motivator/ last bastion of innocence for the final girl.
+|parent| | Low mortality, low effectiveness, high likelihood of responsibility for present situation
+|sibling| | Average. dependant on age, presence and involvement in plot
+|mentalDisability|| Quite immortal
+|physicalDisability|| Coin toss. Can range from average mortality to minority group level of  
+|redShirt| -10| Catch All for squishy Cannon Fodder, such as: <br/> <ul><li>mentor figures </li><li> babysitters </li><li>guidance counsellors</li></ul>|
+|police| 4| May or may not die, but will be ineffectual if present
+|scientist| | Have to die early, either due to causing the outbreak scenario, or possessing the skill/ intelligence to end it
+|cheerleader| 7|
+|jock| 6|
+|babysitter| | red shirt
+|niceGuy| 2 | |
+
+#### addCharacters()
 
 
 
