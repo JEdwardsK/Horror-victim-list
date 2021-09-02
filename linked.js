@@ -1,11 +1,17 @@
-
+/*------------------------------------*\
+  # CLASSES AND OBJECTS
+\*------------------------------------*/
+/*
+  contains the class declarations objects and functions used in linked list version of Death List generator
+*/
 
 export class CharacterNode {
-  constructor (name, score) {
+  constructor (name, score, tropes) {
     // if (typeof score !== 'number') throw new Error('invalid type, score must be a number')
     this.name = name
     this.score = score
     this.next = null
+    this.tropes = tropes
   }
 }
 
@@ -86,10 +92,9 @@ export class CharacterLinkedList {
  * used to arbitrarily decide the order where two characters have the same score. the character being added has either 1 or -1 added to their score, to allow entry
  * @returns 1 or -1
  */
-export const coinToss = () => {
+export const coinToss = (val1, val2) => {
   const result = Math.round(Math.random())
-  // return result === 0 ? -1 : 1
-  return -1
+  return result === 0 ? val1 : val2
 }
 
 export const scores = {
@@ -117,51 +122,64 @@ export const scores = {
   parent: 3,
   sibling: 3,
 
+
   mentalDisability: 1,
   physicalDisability: 5,
 
-  redShirt: -10, //guidance counsellor
+  redShirt: -10, //guidance counsellor, mentor
   police: 4,
-  mentor: 5,
   scientist: 5,
+  cheerleader: 7,
+  jock: 6,
+
 
   niceGuy: 2
 
 }
 
-console.log(scores.campCounsellor)
 const yesNo = [['yes', true],['no', false]]
 export const questions = {
   age: ['how old is the character?', [
-      ['0 - 10', 'child'],
-      ['11-21', 'teenager'],
-      ['21-30', 'youngAdult'], 
-      ['31-60', 'adult'], 
-      ['61+', 'OAP']
+    ['0 - 10', 'child'],
+    ['11-21', 'teenager'],
+    ['21-30', 'youngAdult'], 
+    ['31-60', 'adult'], 
+    ['61+', 'OAP']
   ]],
   ethnicity: ['what ethnicity is the character?', [
-      ['White', 'white'], 
-      ['Black', 'black'], 
-      ['Other Ethnic Minority', 'ethnicMinority']
+    ['White', 'white'], 
+    ['Black', 'black'], 
+    ['Other Ethnic Minority', 'ethnicMinority']
   ]],
   isProtagonist: ['is the character the protagonist?', yesNo],
   isAntagonist: ['is the character the main villain?', yesNo],
   gender: ['is the character male or female?',[
-      ['male', 'male'],
-      ['female', 'female']
-    ]
-  ],
+    ['male', 'male'],
+    ['female', 'female']
+  ]],
   occupation: ['what does the character do for a living?', [
     ['law enforcement', 'police'], 
-    ['role model/ someone protagonist looks up to/ mentor figure', 'mentor'], 
     ['scientist or skilled technician', 'scientist'], 
     ['guidance counsellor', 'redShirt'], 
+    ['jock', 'jock'],
+    ['cheerleader', 'cheerleader'],
+    ['babysitter', 'redShirt']
     ['other', false]
   ]],
-  relationship: ['is the character related to the protagonist?',[['mother', 'parent'],['father', 'parent'],['sibling', 'sibling']]],
-  hasDisability: ['does the character have a disability?', [ ['mental', 'mentalDisability'], ['physical', 'physicalDisability'], ['none', false]]],
+  relationship: ['What is the character\'s relationship to the protagonist?', [
+    ['mother', 'parent'],
+    ['father', 'parent'],
+    ['sibling', 'sibling'],
+    ['role model/ someone protagonist looks up to/ mentor figure', 'redShirt'], 
+    ['best friend', 'bestFriend'],
+    ['other', false]
+  ]],
+  hasDisability: ['does the character have a disability?', [ 
+    ['mental', 'mentalDisability'], 
+    ['physical', 'physicalDisability'], 
+    ['none', false]
+  ]],
   isNiceGuy: ['is the character generally the most average amongst the group', yesNo]
-
 }
 
 export const bonus = {
