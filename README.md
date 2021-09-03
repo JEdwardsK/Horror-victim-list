@@ -14,9 +14,18 @@
   
 To run from the root first run `yarn`. Then depending on which questions you would like to answer:
 
-- simple version - `node simple.js`
-- linked list version - `node linkedVersion.js`
-- bonus questions (short) - `node bonus.js`
+- simple version
+```bash
+node simple.js
+```
+- linked list version - 
+```bash
+node linkedVersion.js
+```
+- bonus questions (short) - 
+```bash
+node bonus.js
+```
 
 ## Simple version
 ### How it works
